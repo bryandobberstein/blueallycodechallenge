@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{%block body %}
+    <body>
+        <table>
+            <tr>
+                <th></th>
+                <th>Project #</th>
+                <th>Title</th>
+                <th>Status</th>
+                <th>Start Date</th>
+                <th>Active</th>
+                <th>Assigned To</th>
+                <th>Percent Complete</th>
+            </tr>
+            {% for entry in entries %}
+            <tr>
+                {% if clicked == False %}
+                <td><a href="/true">&rarr;</a></td>
+                {% else %}
+                <td><a href="/false">&darr;</a></td>
+                {% endif %}
+                <td>{{entry.id}}</td>
+                <td>{{entry.title}}</td>
+                <td>{{entry.status}}</td>
+                <td>{{entry.start_date}}</td>
+                <td>{{entry.active}}</td>
+                <td>{{entry.assignee}}</td>
+                <td>{{entry.percent_complete}}</td>
+            </tr>
+            {% if clicked == True %}
+            <tr>
+                <td>{{ entry.details.requester }}</td>
+            </tr>
+            
+            {% endif %}
+            {% endfor %}
+        </table>
+        {{clicked}}
+    </body>
+{% endblock %}
